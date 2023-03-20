@@ -1,0 +1,67 @@
+﻿<Window x:Class="Register_Diagnose.RD_UI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Register_Diagnose"
+        mc:Ignorable="d"
+        Title="RD_UI"
+        Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={local:WIndowSizeConverter}, ConverterParameter='0.65' }" 
+        Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={local:WIndowSizeConverter}, ConverterParameter='0.35' }" 
+
+        >
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Register_Diagnose;component/StyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="200">
+
+                <Button x:Name="btnRegister" Style="{StaticResource ButtonStyle}" 
+                        CommandParameter="{Binding ElementName=btnRegister,Path=Content}"
+                        Command="{Binding ElementName=btnRegister, Path=DataContext.ButtonClickCommand}">
+                    <TextBlock>Register</TextBlock>
+                </Button>
+
+                <Button x:Name="btnDiagnose" Style="{StaticResource ButtonStyle}"
+                        CommandParameter="{Binding ElementName=btnDiagnose,Path=Content}"
+                        Command="{Binding ElementName=btnDiagnose, Path=DataContext.ButtonClickCommand}" >
+                    <TextBlock>Diagnose</TextBlock>
+                </Button>
+                
+                <Button x:Name="btnClear" Style="{StaticResource AuxButtonStyle}"
+                        CommandParameter="{Binding ElementName=btnClear,Path=Content}"
+                        Command="{Binding ElementName=btnClear, Path=DataContext.ButtonClickCommand}">
+                    <TextBlock>Clear</TextBlock>
+                </Button>
+
+                <Button x:Name="btnExit" Style="{StaticResource AuxButtonStyle}"
+                        CommandParameter="{Binding ElementName=btnExit,Path=Content}"
+                        Command="{Binding ElementName=btnExit, Path=DataContext.ButtonClickCommand}">
+                    <TextBlock>Exit</TextBlock>
+                </Button>
+
+            </StackPanel>
+
+
+            <ListBox x:Name="lstNumbers" Width="300" 
+                    Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={local:WIndowSizeConverter}, ConverterParameter='0.60' }" 
+                    ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding}" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </StackPanel>
+    </Grid>
+</Window>
